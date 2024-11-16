@@ -1,15 +1,14 @@
-import 'package:employee_attendance/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   
@@ -21,9 +20,14 @@ class _LoginScreenState extends State<LoginScreen> {
     double screenHeight = MediaQuery.of(context).size.height;   
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Column(children: [
+      appBar: AppBar(
+        backgroundColor: Colors.redAccent,
+        elevation: 0,
+      ),
+      body: Column(
+        children: [
           Container(
-            height: screenHeight /3,
+            height: screenHeight /4,
             width: screenWidth,
             decoration: const BoxDecoration(
               color: Colors.blueGrey,
@@ -90,15 +94,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
-                      ), child: const Text("Login", style: TextStyle(
+                      ), child: const Text("REGISTER", style: TextStyle(
                         fontSize: 20),
                       ),),),
-                    const SizedBox(height: 20,
-                    ),
-
-                    TextButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterScreen()));
-                    }, child: const Text("Are you a new Employee? Register here"))                                 
+                    
           ])
           )
         ],
