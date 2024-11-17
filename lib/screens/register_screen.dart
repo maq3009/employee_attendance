@@ -1,4 +1,6 @@
+import 'package:employee_attendance/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class RegisterScreen extends StatefulWidget {
@@ -82,24 +84,47 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     controller: _passwordController,
                     obscureText: true,
                   ),
-                  const SizedBox(height: 30,),
-
+                  const SizedBox(height: 30,
+                  ),
+                  Consumer<AuthService>(
+                    builder: (context, authServiceProvider, child) {
+                      return
                     SizedBox(
                       height: 60,
                       width: double.infinity,
-                      child: ElevatedButton(onPressed: () {
-
-                      }, style: ElevatedButton.styleFrom(
+                      child: authServiceProvider.isLoading ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                      
+                      :ElevatedButton(onPressed: () {
+                        authServiceProvider.registerEmployee(
+                          _emailController.text.trim(),
+                          _passwordController.text.trim(),
+                          context);
+                      }, 
+                      style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.redAccent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
-                      ), child: const Text("REGISTER", style: TextStyle(
-                        fontSize: 20),
-                      ),),),
-                    
-          ])
+                      ),
+                      child: const Text(
+                        "REGISTER",
+                        style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                         ),),
+              )
+             
+            
+            );
+
+            },
           )
-        ],
-      ));
-}}
+
+        ]),
+        )
+        ],)
+    );
+}
+}
