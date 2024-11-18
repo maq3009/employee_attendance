@@ -13,13 +13,13 @@ class DbService extends ChangeNotifier {
     return randomString;
 
   }
-  Future insertNewUser(String email, var id) async {
+  Future insertNewUser(String email, String id) async {
     await _supabase.from(Constants.employeeTable).insert({
       'id': id,
       'name': '',
-      'email': '',
+      'email': 'email',
       'employee_id': generateRandomEmployeeId(),
-      'Department': null
+      'department': null
     });
   }
 }
